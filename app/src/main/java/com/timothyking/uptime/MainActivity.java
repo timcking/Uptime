@@ -1,5 +1,7 @@
 package com.timothyking.uptime;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.SystemClock;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -10,6 +12,8 @@ import android.widget.TextView;
 import java.text.DecimalFormat;
 
 public class MainActivity extends AppCompatActivity {
+
+    private String alertDay;
 
     public void onRefreshClick (View view) {
         setUptime();
@@ -27,8 +31,7 @@ public class MainActivity extends AppCompatActivity {
         DecimalFormat df = new DecimalFormat("#####.##");
         TextView warnField = (TextView) findViewById(R.id.txtWarning);
 
-        // 7 days = 168 hours
-        if (hours >= 168) {
+        if (hours >= Float.valueOf(alertDay)*24) {
             warnField.setText("A restart is recommended.");
             warnField.setVisibility(View.VISIBLE);
         } else {
@@ -50,7 +53,18 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        setUptime();
+        SharedPreferences sharedPreferences = this.getSharedPreferences("com.timothyking.uptime", Context.MODE_PRIVATE);
+        alertDay = sharedPreferences.getString("alertday", "");
 
+        // If alertDay pref is empty, create a default of 7
+        if (alertDay == "") {
+            sharedPreferences.edit().putString("alertday", "7").apply();
+            Log.i("New alertday", "7");
+
+        } else {
+            Log.i("Existing alertday", alertDay);
+        }
+
+        setUptime();
     }
 }
