@@ -8,88 +8,90 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:visibility="visible"
     tools:context="com.timothyking.uptime.MainActivity">
 
     <TextView
-        android:text="TextView"
+        android:id="@+id/txtWarning"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/txtWarning"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"
+        android:layout_marginTop="38dp"
+        android:text="TextView"
         android:textColor="@android:color/holo_red_dark"
         android:textSize="24sp"
+        android:visibility="visible"
         tools:text="A restart is recommended."
-        android:visibility="gone" />
+        android:layout_below="@+id/linearLayout"
+        android:layout_centerHorizontal="true" />
 
     <LinearLayout
-        android:orientation="vertical"
+        android:id="@+id/linearLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="11dp"
-        android:id="@+id/linearLayout">
+        android:orientation="vertical">
 
         <TextView
-            android:text="Your device has been awake for:"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:id="@+id/textView3"
-            android:textSize="18sp" />
-
-        <TextView
-            android:text="220.12 Hours"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:text="Your device has been awake for:"
+            android:textAppearance="@android:style/TextAppearance.Material.Medium" />
+
+        <TextView
             android:id="@+id/txtHours"
-            android:padding="7dp"
-            android:textSize="24sp"
-            android:textAlignment="center" />
-
-        <TextView
-            android:text="Or"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:padding="7dp"
+            android:text="220.12 Hours"
+            android:textAlignment="center"
+            android:textSize="24sp" />
+
+        <TextView
             android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Or"
             android:textAlignment="center"
             android:textSize="18sp" />
 
         <TextView
-            android:text="10.12 Days"
+            android:id="@+id/txtDays"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/txtDays"
             android:padding="7dp"
-            android:textSize="24sp"
-            android:textAlignment="center" />
+            android:text="10.12 Days"
+            android:textAlignment="center"
+            android:textSize="24sp" />
     </LinearLayout>
 
     <LinearLayout
-        android:orientation="horizontal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/linearLayout"
+        android:layout_below="@+id/txtWarning"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="40dp">
+        android:layout_marginTop="34dp"
+        android:orientation="horizontal">
 
         <Button
-            android:text="Refresh"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:id="@+id/btnRefresh"
-            android:layout_weight="1"
-            android:layout_marginRight="20dp"
-            android:onClick="onRefreshClick" />
-
-        <Button
-            android:text="Exit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/btnExit"
+            android:layout_marginRight="20dp"
             android:layout_weight="1"
+            android:onClick="onRefreshClick"
+            android:text="Refresh" />
+
+        <Button
+            android:id="@+id/btnExit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
-            android:onClick="onExitClick" />
+            android:layout_weight="1"
+            android:onClick="onExitClick"
+            android:text="Exit" />
 
     </LinearLayout>
 
