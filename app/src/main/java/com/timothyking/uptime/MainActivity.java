@@ -1,6 +1,7 @@
 package com.timothyking.uptime;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.SystemClock;
 import android.support.v7.app.AppCompatActivity;
@@ -16,6 +17,8 @@ import android.widget.Toast;
 import java.text.DecimalFormat;
 
 public class MainActivity extends AppCompatActivity {
+
+    public static final String DEFAULT_DAYS = "7";
 
     private String alertDay;
     public void onRefreshClick (View view) {
@@ -39,7 +42,8 @@ public class MainActivity extends AppCompatActivity {
 
         switch (item.getItemId()) {
             case R.id.settings:
-                Toast.makeText(this, "Settings Clicked", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getApplicationContext(), SettingsActivity.class);
+                startActivity(intent);
                 return true;
             default:
                 return false;
@@ -61,9 +65,6 @@ public class MainActivity extends AppCompatActivity {
             warnField.setVisibility(View.GONE);
         }
 
-        // Log.i("Hours", df.format(hours));
-        // Log.i("Days", df.format(days));
-
         TextView hoursField = (TextView)findViewById(R.id.txtHours);
         hoursField.setText(df.format(hours) + " Hours");
 
@@ -79,10 +80,11 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences sharedPreferences = this.getSharedPreferences("com.timothyking.uptime", Context.MODE_PRIVATE);
         alertDay = sharedPreferences.getString("alertday", "");
 
-        // If alertDay pref is empty, create a default of 7
+        // If alertDay pref is empty, create a default
         if (alertDay == "") {
-            sharedPreferences.edit().putString("alertday", "7").apply();
-            Log.i("New alertday", "7");
+            sharedPreferences.edit().putString("alertday", DEFAULT_DAYS).apply();
+            alertDay = DEFAULT_DAYS;
+            Log.i("New alertday", DEFAULT_DAYS);
 
         } else {
             Log.i("Existing alertday", alertDay);
