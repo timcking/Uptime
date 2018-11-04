@@ -12,8 +12,6 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import java.text.DecimalFormat;
 
 public class MainActivity extends AppCompatActivity {
@@ -21,9 +19,11 @@ public class MainActivity extends AppCompatActivity {
     public static final String DEFAULT_DAYS = "7";
 
     private String alertDay;
+
     public void onRefreshClick (View view) {
-        setUptime();
+         setUptime();
     }
+
     public void onExitClick (View view) {
         this.finishAffinity();
     }
